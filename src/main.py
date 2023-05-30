@@ -1,25 +1,41 @@
-import math
-from classes.World_map import WorldMap
 from classes.Jumpmaster import JumpMaster
-import numpy as np
 
 def main():
 
-    jm = JumpMaster()
+    # jm = JumpMaster()
 
-    map_dimensions = (100, 200)
-    wm = WorldMap(map_dimensions)
+    position = {"x": 0, "y": 10}
+    speed = 2
+    coefficient = 0.8
 
-    diving = True
+    positions_log = list()
+    positions_log.append(tuple(position.values()))
+
+    while True:
+
+        position["x"] += 1
+        position["y"] -= round(speed * coefficient, 1)
+
+        positions_log.append(tuple(position.values()))
+
+        ground_touched = position["y"] <= 0
+        negative_y_next_iteration = position["y"] - round(speed * coefficient, 1) < 0
+        if ground_touched or negative_y_next_iteration:
+            break
+
+    print(positions_log)
+
+"""diving = True
     while diving:
-        progress = int()
-        direction = float(input())
 
+        progress = int()
+
+        direction = float(input())
         jm.set_direction(direction)
+
         jm.set_speed()
 
-        diving = False
-
+        diving = False"""
 
 
     # print(round(np.rad2deg((1/math.sqrt(5))), 2))

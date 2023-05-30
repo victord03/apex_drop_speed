@@ -2,10 +2,12 @@
 class JumpMaster:
     direction: float  # 1 represents entirely horizontally; 0 entirely vertically
     speed: int
+    coordinates: tuple[int, int]
 
     def __init__(self):
         self.direction = 0.0
         self.speed = 0
+        self.coordinates = (0, 0)
 
     def set_direction(self, direction: float):
         self.direction = direction
