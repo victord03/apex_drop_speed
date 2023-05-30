@@ -1,0 +1,26 @@
+Explored ideas
+
+
+Loop order of operations for the fall (incomplete):
+
+    diving = True
+    while diving:
+
+        progress = int()
+
+        direction = float(input())
+        jm.set_direction(direction)
+
+        jm.set_speed()
+
+        diving = False"""
+
+
+
+Convert angle to degrees using np.rad2deg
+    print(round(np.rad2deg((1/math.sqrt(5))), 2))
+
+Convert angle to degrees using the radian to degrees conversion formula
+    angle_ratio = (1 / math.sqrt(5))
+    conversion_to_degrees = (180/math.pi)
+    print(round(angle_ratio * conversion_to_degrees, 2))
