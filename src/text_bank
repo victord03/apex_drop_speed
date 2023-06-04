@@ -24,3 +24,14 @@ Convert angle to degrees using the radian to degrees conversion formula
     angle_ratio = (1 / math.sqrt(5))
     conversion_to_degrees = (180/math.pi)
     print(round(angle_ratio * conversion_to_degrees, 2))
+
+
+
+
+def calculate_vertical_speed(angle, minimum_speed=110, maximum_speed=152):
+    min_speed = minimum_speed
+    max_speed = maximum_speed
+
+    # Calculate the vertical speed based on the angle. Max speed is achieved at 90 degrees, min at 0.
+    speed = min_speed + (max_speed - min_speed) * (90 - angle) / 90
+    return speed
