@@ -15,13 +15,13 @@ out_of_bound_y_min = dimensions[1][0] - 10
 out_of_bound_y_max = dimensions[1][1] + 10
 
 param_coordinates = pytest.mark.parametrize(
-    'coord_x,coord_y,result',
+    "coord_x,coord_y,result",
     [
         (out_of_bound_x_min, 0, ValueError),
         (out_of_bound_x_max, 0, ValueError),
         (0, out_of_bound_y_min, ValueError),
         (0, out_of_bound_y_max, ValueError),
-    ]
+    ],
 )
 
 grid_instance = cd.Grid(dimensions)
@@ -43,12 +43,19 @@ def test_create_point():
     assert point_instance.current_coordinates == (0, 0)
 
 
+def test_set_new_coordinates():
+    coordinates = 2, 6
+    point_instance.set_new_coordinates(coordinates)
+    assert point_instance.current_coordinates == coordinates
+
+
 @param_coordinates
-def test_set_new_coordinates(coord_x, coord_y, result):
+def test_set_new_coordinates_out_of_bounds(coord_x, coord_y, result):
     """New coordinates can be passed and set to the Point object. Returns an error if any coordinate is out of bounds
-        (x_min, x_max, y_min or y_max)"""
+    (x_min, x_max, y_min or y_max)"""
     with pytest.raises(ValueError):
         assert point_instance.set_new_coordinates((coord_x, coord_y)) == result
+
 
 def test_store_current_coordinates():
     """I can store current coordinates in a dictionary using the milliseconds of the current time

@@ -40,9 +40,9 @@ class Point:
         ):
             self.current_coordinates = new_coordinates
         else:
-            raise ValueError('Coordinates out of bounds')
+            raise ValueError("Coordinates out of bounds")
 
     def store_current_coordinates(self):
         now_dt = dt.now()
-        now_str = now_dt.strftime('%f')
+        now_str = now_dt.strftime("%f")
         self.coordinates_history[now_str] = self.current_coordinates
