@@ -28,7 +28,6 @@ def main():
         vertical_drop_height: int,
         distance: int,
     ) -> tuple[float, float]:
-
         time_to_reach_destination_on_the_ground = solve_fall_time(distance, fall_speed)
         horizontal_distance = solve_horizontal_distance_parallel_to_the_ground(
             vertical_height, distance
