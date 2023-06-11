@@ -6,6 +6,9 @@ __pycache__/
 # Manually added by me
 /.idea
 *.pyc
+.pytest_cache
+src/.pytest_cache
+.coverage
 
 # C extensions
 *.so
