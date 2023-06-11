@@ -35,3 +35,40 @@ def calculate_vertical_speed(angle, minimum_speed=110, maximum_speed=152):
     # Calculate the vertical speed based on the angle. Max speed is achieved at 90 degrees, min at 0.
     speed = min_speed + (max_speed - min_speed) * (90 - angle) / 90
     return speed
+
+
+
+MAIN LAST VERSION:
+
+
+
+class JumpMaster:
+    coordinates: tuple[int, int]
+
+    def __init__(self):
+        self.coordinates = (0, 0)
+
+    def update_coordinates(self, new_coordinates: tuple[int, int]):
+        self.coordinates = new_coordinates
+
+
+
+class MapCoordinates:
+    dimensions: tuple[int, int]
+
+    def __init__(self, dimensions: tuple[int, int]):
+        self.dimensions = dimensions
+
+
+
+
+def main():
+
+    initial_speed = 100
+
+    horizontal_speed = 50
+    vertical_speed = 75  # 30% increase from horizontal speed
+
+
+if __name__ == '__main__':
+    main()
