@@ -1,5 +1,4 @@
-# Design by testing
-
+# Design by testing (TDD)
 # Think about WHAT to do, not how !
 
 import pytest
@@ -10,11 +9,20 @@ import coordinates as cd
 dimensions = ((-50, 50), (-50, 50))
 new_coordinates = (1, 2)
 
-out_of_bound_x_coordinate_min = (dimensions[0][0] - 10, 5)
-out_of_bound_x_coordinate_max = (dimensions[0][1] + 10, 5)
+out_of_bound_x_min = dimensions[0][0] - 10
+out_of_bound_x_max = dimensions[0][1] + 10
+out_of_bound_y_min = dimensions[1][0] - 10
+out_of_bound_y_max = dimensions[1][1] + 10
 
-out_of_bound_y_coordinate_min = (5, dimensions[1][0] - 10)
-out_of_bound_y_coordinate_max = (5, dimensions[1][1] + 10)
+param_coordinates = pytest.mark.parametrize(
+    'coord_x,coord_y,result',
+    [
+        (out_of_bound_x_min, 0, ValueError),
+        (out_of_bound_x_max, 0, ValueError),
+        (0, out_of_bound_y_min, ValueError),
+        (0, out_of_bound_y_max, ValueError),
+    ]
+)
 
 grid_instance = cd.Grid(dimensions)
 point_instance = cd.Point(grid_instance)
@@ -35,18 +43,12 @@ def test_create_point():
     assert point_instance.current_coordinates == (0, 0)
 
 
-def test_set_new_coordinates():
-    """New coordinates can be passed and set to the Point object"""
-    point_instance.set_new_coordinates(new_coordinates)
-
-    assert point_instance.current_coordinates == new_coordinates
-
+@param_coordinates
+def test_set_new_coordinates(coord_x, coord_y, result):
+    """New coordinates can be passed and set to the Point object. Returns an error if any coordinate is out of bounds
+        (x_min, x_max, y_min or y_max)"""
     with pytest.raises(ValueError):
-        assert point_instance.set_new_coordinates(out_of_bound_x_coordinate_min)
-        assert point_instance.set_new_coordinates(out_of_bound_x_coordinate_max)
-        assert point_instance.set_new_coordinates(out_of_bound_y_coordinate_min)
-        assert point_instance.set_new_coordinates(out_of_bound_y_coordinate_max)
-
+        assert point_instance.set_new_coordinates((coord_x, coord_y)) == result
 
 def test_store_current_coordinates():
     """I can store current coordinates in a dictionary using the milliseconds of the current time
